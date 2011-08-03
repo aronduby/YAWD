@@ -1,0 +1,71 @@
+#menu_trigger{
+  background:url(../imgs/icons_large/menu_trigger.png);
+  margin:0;
+  padding:0;
+  border:none;
+  width:48px;
+  height:48px;
+  overflow:none;
+  text-indent:-999999px;
+  cursor:pointer;
+}
+
+.yawd-menu{
+  position:absolute;
+  bottom:48px;
+  left:10px;
+  background-color:#f00;
+  padding:10px;
+  border-radius:5px;
+}
+
+.yawd-menuitem{
+  list-style:none;
+  padding:5px;
+  margin:0 0 5px 0;
+  background-color:#f66;
+  cursor:pointer;
+  position:relative;
+  width:200px;
+}
+  .yawd-menuitem img{
+    vertical-align:middle;
+    margin-right:5px;
+  }
+
+	
+.yawd-menuitem-hasSub{
+  background-image:url(../imgs/icons/arrow_right.png);
+  background-repeat:no-repeat;
+  background-position:right 8px;
+}
+
+.yawd-menuitem:hover,
+.yawd-menuitem-hover{
+  background-color:#faa;
+}
+
+.yawd-menuitem .yawd-menuitem-menu{
+  position:absolute;
+  left:220px;
+  bottom:-5px;
+  padding:10px;
+  background-color:#f00;
+  border-radius:5px;
+  cursor:auto;
+  display:none;
+}
+
+  .yawd-menuitem:hover .yawd-menuitem-menu,
+  .yawd-menuitem-hover .yawd-menuitem-menu{
+    display:block;
+  }
+
+  .yawd-menuitem .yawd-contextmenu-holder{
+    top:2px;
+    left:auto;
+    right:2px;
+  }
+  .yawd-menuitem:hover > .yawd-contextmenu-holder{
+    display:block;
+  }

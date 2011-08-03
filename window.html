@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>yawd</title>
+	
+	<script src="assets/jquery-1.6.1.min.js"></script>
+	<script src="assets/ui/jquery.ui.core.js"></script>
+	<script src="assets/ui/jquery.ui.widget.js"></script>
+	<script src="assets/ui/jquery.ui.mouse.js"></script>
+	<script src="assets/ui/jquery.ui.draggable.js"></script>
+	<script src="assets/ui/jquery.ui.position.js"></script>
+	<script src="assets/ui/jquery.ui.resizable.js"></script>
+	
+	<script src="js/yawd.js"></script>
+	<script src="js/jquery.yawd.window.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$('a#new_window').click(function(){				
+				yawd.openWindow('<section><p>hello</p></section>', 'uid-'+Math.floor(Math.random()*100));
+				return false;
+			}).click();
+		});
+	</script>
+
+	<link href="css/reset.css" rel="stylesheet" />
+	
+	<link href="assets/themes/base/jquery.ui.base.css" rel="stylesheet" />
+	<link href="assets/themes/base/jquery.ui.core.css" rel="stylesheet" />
+	<link href="assets/themes/base/jquery.ui.resizable.css" rel="stylesheet" />	
+
+	<link href="css/desktop.css" rel="stylesheet" />
+	<link href="css/window.css" rel="stylesheet" />
+
+</head>
+<body>
+
+	<section id="desktop"></section>
+	<section id="taskbar">
+		<a href="#" id="new_window">open a new window</a>
+	</section>
+
+</body>
+</html>

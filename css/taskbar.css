@@ -1,0 +1,42 @@
+.yawd-taskbar{
+  display:inline-block;
+  background:rgba(255,255,255,.3);
+  margin:2px 2px;
+  padding:0 5px;
+  border-radius:4px;
+  height:26px;
+  opacity:.7;
+  cursor:pointer;
+}
+.yawd-taskbar:hover{
+  opacity:1;
+}
+
+.yawd-taskbar-title{
+  vertical-align:middle;
+  cursor:pointer;
+}
+.yawd-taskbar-title-icon{
+  vertical-align:middle;
+}
+
+.yawd-taskbar-close{
+  visibility:hidden;
+  vertical-align:middle;
+  border:none;
+  padding:0;
+  margin:0 0 0 5px;
+  width:17px;
+  height:15px;
+  overflow:hidden;
+  text-indent:999999px;
+  background:url(../imgs/taskbar_close.png) no-repeat top left;
+  cursor:pointer;
+}
+  .yawd-taskbar:hover .yawd-taskbar-close{
+    visibility:visible;
+  }
+
+.yawd-taskbar-close:hover{
+  background-position:bottom left;
+}

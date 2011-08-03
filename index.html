@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>yawd</title>
+	
+	<script src="js/yawd.js"></script>
+	<script src="js/yawd.window.js"></script>
+	<script src="js/yawd.taskbar.js"></script>
+	<script src="js/yawd.shortcut.js"></script>
+	<script src="js/yawd.menuitem.js"></script>
+	<script src="js/yawd.contextmenu.js"></script>
+	<script src="js/yawd.dialog.js"></script>
+
+
+	<link href="css/desktop.css" rel="stylesheet" />
+	<link href="css/window.css" rel="stylesheet" />
+	<link href="css/taskbar.css" rel="stylesheet" />
+	<link href="css/shortcut.css" rel="stylesheet" />
+	<link href="css/menuitem.css" rel="stylesheet" />
+	<link href="css/contextmenu.css" rel="stylesheet" />
+
+</head>
+<body>
+
+	<section id="desktop">
+		<!--
+		<a rel="openTestWindow" data-appicon="imgs/icons/application.png" >
+			<img src="imgs/icons_large/random.png" alt="Test App" />
+			<label>Test App</label>
+		</a>
+		<a rel="openTestWindow" data-appicon="imgs/icons/application.png" >
+			<img src="imgs/icons_large/random.png" alt="Test App" />
+			<label>Test App</label>
+		</a>
+		<a rel="openTestWindow" data-appicon="imgs/icons/application.png" >
+			<img src="imgs/icons_large/random.png" alt="Test App" />
+			<label>Test App</label>
+		</a>	
+		-->
+	</section>
+
+	<section id="system_bar">
+		<button id="menu_trigger">menu</button>
+		<menu id="start_menu"><!--
+			<li rel="openTestWindow"><img src="imgs/icons/feed_go.png" alt="Test App" />Test App</li>
+			<li rel="openTestWindow"><img src="imgs/icons/page_white_code_red.png" alt="Club Cards" />Club Cards</li>
+			<li><img src="imgs/icons/map_magnify.png" alt="Games" />Games
+				<menu>
+					<li rel="openTestWindow"><img src="imgs/icons/medal_gold_add.png" alt="Solitare" />Solitare</li>
+					<li rel="openTestWindow"><img src="imgs/icons/page_white_cd.png" alt="MahJong Titans" />MahJong Titans</li>
+					<li rel="openTestWindow"><img src="imgs/icons/report_delete.png" alt="Solitare" />Spider Solitare</li>
+				</menu>
+			</li>-->
+		</menu>
+
+		<section id="quick_launch">
+			<button rel="openTestWindow">window</button>
+			<button rel="showDesktop">desktop</button>
+			<button rel="cascadeWindows">cascade</button>
+			<button rel="openTestDialog">dialog</button>
+		</section>
+
+		<section id="taskbar"></section>
+	</section>
+
+	<section id="test">
+		<h1>Hello World</h1><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<p><a id="dialogTrigger" href="#">How are you?</a></p>
+	</section>
+
+
+	<script>
+	document.addEventListener("DOMContentLoaded", init, false);
+
+	function init(){
+		
+		document.getElementById('dialogTrigger').addEventListener(
+			'click',
+			function(e){
+				yawd.openDialog('<p>Test</p>', 
+					{
+						modal:true,
+						buttons:[{
+								name: "Good",
+								action: function(){ 
+									this.close(); 
+								}
+							}, {
+								name: "Bad", 
+								action: function(){ 
+									yawd.openDialog("<p>I'm Sorry</p>", {modal:true}, null, e); 
+									this.close(); 
+								}
+							}
+						]
+					}, null, e);
+
+				e.preventDefault();
+				e.stopPropagation();
+			},
+			true
+		);
+
+		var desktopShortcuts = [
+			{
+				icon: 'imgs/icons_large/random.png',
+				appIcon: 'imgs/icons/application.png',
+				action: [
+					'iframeLoad',
+					[
+						'http://www.google.com', 
+						{ 
+							icon: 'imgs/icons/application.png', 
+							title: 'Google', 
+							width:850,
+							height:400
+						}
+					]
+				],
+				title: 'iFrame',
+				position: 'auto'
+			},
+			{
+				icon: 'imgs/icons_large/random.png',
+				appIcon: 'imgs/icons/application.png',
+				action: [
+					'ajaxLoad',
+					[
+						'hello_world.html',  
+						{ 
+							icon: 'imgs/icons/application.png', 
+							title: 'Ajax Loaded!', 
+							width:850, 
+							autoOpen: false, 
+							open: function(){ 
+								console.log('Ajax Loaded');
+							}
+						}
+					]
+				],
+				title: 'Ajax',
+				position: 'auto'
+			},
+			{
+				icon: 'imgs/icons_large/random.png',
+				appIcon: 'imgs/icons/application.png',
+				action:'openTestWindow',
+				title: 'Test App',
+				position: 'auto'
+			}
+		];
+		/*
+		if(localStorage.osSavedShortcuts){
+			desktopShortcuts = JSON.parse(localStorage.osSavedShortcuts);
+		}
+		*/
+
+		var menuItems = [
+			{
+				icon: 'imgs/icons/feed_go.png',
+				action: [
+					'iframeLoad',
+					[
+						'http://www.google.com', 
+						{ 
+							icon: 'imgs/icons/application.png', 
+							title: 'Google', 
+							width:850,
+							height:400
+						}
+					]
+				],
+				title: 'Google'
+			},
+			{
+				icon: 'imgs/icons/feed_go.png',
+				action: function(){
+					console.log('You Can\'t Kill the Metal!');
+				},
+				title: 'Test App'
+			},
+			{
+				icon: 'imgs/icons/page_white_code_red.png',
+				action: [
+					'ajaxLoad',
+					[
+						'hello_world.html',  
+						{ 
+							icon: 'imgs/icons/application.png', 
+							title: 'Ajax Loaded!', 
+							width:850, 
+							autoOpen: false, 
+							open: function(){ 
+								alert('Ajax Loaded');
+							}
+						}
+					]
+				],
+				title: 'Club Cards'
+			},
+			{
+				icon: 'imgs/icons/map_magnify.png',
+				title: 'Games',
+				items: [
+					{
+						icon: 'imgs/icons/medal_gold_add.png',
+						action: 'openTestWindow',
+						title: 'Solitare'
+					},
+					{
+						icon: 'imgs/icons/page_white_cd.png',
+						action: 'openTestWindow',
+						title: 'MahJong Titans'
+					},
+					{
+						icon: 'imgs/icons/report_delete.png',
+						action: 'openTestWindow',
+						title: 'Spider Solitare'
+					},
+				]
+			}
+		];
+
+		yawd.init({
+			desktop: document.getElementById('desktop'),
+			menu: document.getElementById('start_menu'),
+			menuTrigger: document.getElementById('menu_trigger'),
+			quicklaunch: document.getElementById('quick_launch'),
+			taskbar: document.getElementById('taskbar'),
+			menuItems: menuItems,
+			desktopShortcuts: desktopShortcuts // document.getElementById('desktop').getElementsByTagName('a')
+		});
+
+	}// end domcontentloaded
+
+	// testing functions
+	yawd.openTestWindow = function(e, app_id){
+		this.openWindow(
+			document.getElementById('test'),//.cloneNode(true),
+			{ icon: 'imgs/icons/application.png', title: 'Test App' },
+			app_id
+		);
+	};
+
+	yawd.openTestDialog = function(e, app_id){
+		var btns = [{
+			name: "Ok",
+			action: function(e){
+				this.close();
+			}
+		}, {
+			name: "Hello",
+			action: function(e){
+				console.log('world');
+			}
+		}, {
+			name: "Foo",
+			action: function(e){
+				console.log('bar');
+			}
+		}]
+		this.openDialog('<p>hello world</p>', {buttons: btns});
+	}
+
+	</script>
+
+</body>
+</html>

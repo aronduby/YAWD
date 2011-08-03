@@ -1,0 +1,20 @@
+.yawd-shortcut{
+  width:60px;
+  height:75px;
+  position:absolute;
+  text-align:center;
+  border-radius:5px;
+}
+
+.yawd-shortcut-hover,
+.yawd-shortcut:hover{
+  background:rgba(255, 0, 0, .6);
+}
+
+  .yawd-shortcut:hover .yawd-contextmenu-holder{
+    display:block;
+  }
+
+.yawd-shortcut-highlight{
+  background:rgba(255, 0, 0, .8) !important;
+}
